@@ -1,0 +1,331 @@
+{
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT ",
+    "version": "eosio::abi/1.2",
+    "types": [],
+    "structs": [
+        {
+            "name": "addsubscribe",
+            "base": "",
+            "fields": [
+                {
+                    "name": "contract_n",
+                    "type": "name"
+                },
+                {
+                    "name": "subscriber",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "claimbalance",
+            "base": "",
+            "fields": [
+                {
+                    "name": "contract_n",
+                    "type": "name"
+                },
+                {
+                    "name": "subscriber",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "contracts",
+            "base": "",
+            "fields": [
+                {
+                    "name": "contract_name",
+                    "type": "name"
+                },
+                {
+                    "name": "checking_action",
+                    "type": "name"
+                },
+                {
+                    "name": "latitude_deg",
+                    "type": "float64"
+                },
+                {
+                    "name": "longitude_deg",
+                    "type": "float64"
+                },
+                {
+                    "name": "threshold_1",
+                    "type": "float32"
+                },
+                {
+                    "name": "threshold_2",
+                    "type": "float32"
+                },
+                {
+                    "name": "token_name",
+                    "type": "name"
+                },
+                {
+                    "name": "trigger_amount_usd",
+                    "type": "float32"
+                },
+                {
+                    "name": "if_enabled",
+                    "type": "bool"
+                }
+            ]
+        },
+        {
+            "name": "heatcheck1",
+            "base": "",
+            "fields": [
+                {
+                    "name": "station",
+                    "type": "name"
+                },
+                {
+                    "name": "contract_n",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "mapbylatlon",
+            "base": "",
+            "fields": [
+                {
+                    "name": "contract_n",
+                    "type": "name"
+                },
+                {
+                    "name": "station_type",
+                    "type": "name"
+                },
+                {
+                    "name": "distance_km",
+                    "type": "float32"
+                }
+            ]
+        },
+        {
+            "name": "mapstation",
+            "base": "",
+            "fields": [
+                {
+                    "name": "station",
+                    "type": "name"
+                },
+                {
+                    "name": "contract_n",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "newcontract",
+            "base": "",
+            "fields": [
+                {
+                    "name": "contract_n",
+                    "type": "name"
+                },
+                {
+                    "name": "checking_action",
+                    "type": "name"
+                },
+                {
+                    "name": "token_name",
+                    "type": "name"
+                },
+                {
+                    "name": "trigger_amount_usd",
+                    "type": "float32"
+                },
+                {
+                    "name": "latitude_deg",
+                    "type": "float32"
+                },
+                {
+                    "name": "longitude_deg",
+                    "type": "float32"
+                },
+                {
+                    "name": "threshold_1",
+                    "type": "float32"
+                },
+                {
+                    "name": "threshold_2",
+                    "type": "float32"
+                }
+            ]
+        },
+        {
+            "name": "payout",
+            "base": "",
+            "fields": [
+                {
+                    "name": "contract_n",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "raincheck1",
+            "base": "",
+            "fields": [
+                {
+                    "name": "station",
+                    "type": "name"
+                },
+                {
+                    "name": "contract_n",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "rmcontract",
+            "base": "",
+            "fields": [
+                {
+                    "name": "contract_n",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "stationdefi",
+            "base": "",
+            "fields": [
+                {
+                    "name": "station",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "stationmap",
+            "base": "",
+            "fields": [
+                {
+                    "name": "contract",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "subscribers",
+            "base": "",
+            "fields": [
+                {
+                    "name": "subscriber",
+                    "type": "name"
+                },
+                {
+                    "name": "subscriber_evm",
+                    "type": "checksum160"
+                },
+                {
+                    "name": "balance",
+                    "type": "float32"
+                }
+            ]
+        },
+        {
+            "name": "unmapstation",
+            "base": "",
+            "fields": [
+                {
+                    "name": "station",
+                    "type": "name"
+                },
+                {
+                    "name": "contract_n",
+                    "type": "name"
+                }
+            ]
+        }
+    ],
+    "actions": [
+        {
+            "name": "addsubscribe",
+            "type": "addsubscribe",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "claimbalance",
+            "type": "claimbalance",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "heatcheck1",
+            "type": "heatcheck1",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "mapbylatlon",
+            "type": "mapbylatlon",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "mapstation",
+            "type": "mapstation",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "newcontract",
+            "type": "newcontract",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "payout",
+            "type": "payout",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "raincheck1",
+            "type": "raincheck1",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "rmcontract",
+            "type": "rmcontract",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "stationdefi",
+            "type": "stationdefi",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "unmapstation",
+            "type": "unmapstation",
+            "ricardian_contract": ""
+        }
+    ],
+    "tables": [
+        {
+            "name": "contracts",
+            "type": "contracts",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "stationmap",
+            "type": "stationmap",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "subscribers",
+            "type": "subscribers",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        }
+    ],
+    "kv_tables": {},
+    "ricardian_clauses": [],
+    "variants": [],
+    "action_results": []
+}
