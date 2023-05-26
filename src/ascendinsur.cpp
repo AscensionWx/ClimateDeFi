@@ -101,15 +101,9 @@ ACTION ascendinsur::mapbylatlon( name contract, name station_type, float distanc
           std::make_tuple( station, contract )
         ).send();
       
-      } // station type check
-    
+      } // station type check 
     } // end latitude loop
-    
   } // end longtiude loop
-
-  //string msg = "lat lower: "+ lat_lower + ", lat_upper: " + lat_upper + ", lon_lower: " +
-  //            lon_lower + ", lon_upper: " + lon_upper;
-  //assert(msg);
 
 }
 
@@ -120,15 +114,14 @@ ACTION ascendinsur::addsubscribe(name contract, name subscriber)
   subscribers_table_t _subscribers( get_self(), contract.value );
   auto subscriber_itr = _subscribers.find( subscriber.value );
 
-  if ( subscriber_itr == _subscribers.end() ) {
-      _subscribers.emplace( get_self(), [&](auto& sub) {
-        sub.subscriber = subscriber;
-        //sub.subscriber_evm = 
-        sub.balance = 0;
-      });
-  } else {
-    assert("Already subscribed to this contract.");
-  }
+  check( subscriber_itr != _subscribers.end(), "Already subscribed to this contract." );
+
+  _subscribers.emplace( get_self(), [&](auto& sub) {
+      sub.subscriber = subscriber;
+      //sub.subscriber_evm = 
+      sub.balance = 0;
+  });
+
 
 }
 
@@ -146,21 +139,20 @@ ACTION ascendinsur::newcontract( name contract_name,
   contracts_table_t _contracts( get_self(), get_self().value );
   auto contract_itr = _contracts.find( contract_name.value );
 
-  if ( contract_itr == _contracts.end() ) {
-      _contracts.emplace( get_self(), [&](auto& ctrct) {
-        ctrct.contract_name = contract_name;
-        ctrct.checking_action = checking_action;
-        ctrct.token_name = token_name;
-        ctrct.trigger_amount_usd = trigger_amount_usd;
-        ctrct.latitude_deg = latitude_deg;
-        ctrct.longitude_deg = longitude_deg;
-        ctrct.threshold_1 = threshold_1;
-        ctrct.threshold_2 = threshold_2;
-        ctrct.if_enabled = true;
-      });
-  } else {
-      assert( "Contract name already taken. Please use different name or remove current one." );
-  }
+  check( contract_itr != _contracts.end(),
+         "Contract name already taken. Please use different name or remove current one." );
+
+  _contracts.emplace( get_self(), [&](auto& ctrct) {
+    ctrct.contract_name = contract_name;
+    ctrct.checking_action = checking_action;
+    ctrct.token_name = token_name;
+    ctrct.trigger_amount_usd = trigger_amount_usd;
+    ctrct.latitude_deg = latitude_deg;
+    ctrct.longitude_deg = longitude_deg;
+    ctrct.threshold_1 = threshold_1;
+    ctrct.threshold_2 = threshold_2;
+    ctrct.if_enabled = true;
+  });
         
 }
 
@@ -186,10 +178,8 @@ ACTION ascendinsur::rmcontract( name contract )
   subscribers_table_t _subscribers( get_self(), contract.value );
   auto subscriber_itr = _subscribers.begin();
   while (subscriber_itr != _subscribers.end()) {
-    if ( subscriber_itr->balance > 0 )
-      assert( "Cannot delete contract. A subscriber holds non-zero balance." );
-    else
-      subscriber_itr = _subscribers.erase( subscriber_itr );
+    check( subscriber_itr->balance == 0, "Cannot delete contract. A subscriber holds non-zero balance." );
+    subscriber_itr = _subscribers.erase( subscriber_itr );
   }
 
   contracts_table_t _contracts( get_self(), get_self().value );
@@ -245,8 +235,8 @@ ACTION ascendinsur::claimbalance( name contract, name subscriber )
   uint8_t precision;
   string symbol_letters;
 
-  if ( contracts_itr->token_name != name("eosio.token") )
-    assert( "Contract token unsupported. Can only be eosio.token" );
+  check ( contracts_itr->token_name == name("eosio.token") ,
+          "Contract token unsupported. Can only be eosio.token" );
 
   // Calculate how many tokens need to be withdrawn
   delphi_table_t _delphi_prices( name("delphioracle"), "tlosusd"_n.value );
